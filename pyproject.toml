@@ -13,7 +13,11 @@ description = "Repo for exploring qft-nn correspondence for interpretability"
 
 dependencies = [
     "torch",
-    "numpy"
+    "numpy",
+    "plotly",
+    "datasets",
+    "transformer_lens",
+    "sae_lens"
 ]
 
 [project.optional-dependencies]
