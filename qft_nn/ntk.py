@@ -9,6 +9,7 @@ def compute_empirical_ntk(
     model: torch.nn.Module,
     criterion: torch.nn.modules.loss._Loss,
     data: Dataset,
+    llm: bool, # Hotfix
     batch_size: Optional[int] = None,
 ) -> Float[np.ndarray, "num_data num_data"]:
     # Prepare data
@@ -33,8 +34,13 @@ def compute_empirical_ntk(
 
     model.train()
     for i in range(n_samples):
-        x_i = X[i : i + 1]
-        y_i = y[i : i + 1]
+        if llm:
+            assert n_samples == X.shape[0], "n_samples must equal batch_size"
+            x_i = X[i, :].reshape(-1)
+            y_i = y[i, :].view(-1, y.size(-1))
+        else:
+            x_i = X[i : i + 1]
+            y_i = y[i : i + 1]
 
         model.zero_grad()
         y_pred = model(x_i)
