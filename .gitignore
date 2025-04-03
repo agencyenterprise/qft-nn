@@ -3,3 +3,16 @@
 .pytest_cache
 qft_nn.egg-info
 **/__pycache__
+
+venv
+*.pt
+__pycache__
+*/__pycache__
+modular_addition/frames
+modular_addition/frames_mlp
+modular_addition/movies
+modular_addition/models
+modular_addition/models_mlp
+modular_addition/plots
+modular_addition/plots_mlp
+modular_addition/plots/old_plots
